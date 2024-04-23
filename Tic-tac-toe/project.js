@@ -1,4 +1,5 @@
 console.log("Tic tac toe");
+console.log("hello there");
 let audioTurn = new Audio("ting.mp3");
 let celeb = new Audio("celeb.mp3");
 let turn = "X";
