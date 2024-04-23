@@ -6,7 +6,7 @@ let turn = "X";
 let gameover = false;
 // Function to change the turn
 const changeTurn = () => {
-  return turn === "X" ? "0" : "X";
+  return turn === "X" ? "O" : "X";
 };
 // Function to check win
 const checkWin = () => {
@@ -24,14 +24,18 @@ const checkWin = () => {
     if (
       boxtext[e[0]].innerText === boxtext[e[1]].innerText &&
       boxtext[e[2]].innerText === boxtext[e[1]].innerText &&
-      boxtext[e[0]] !== " "
+      boxtext[e[0]].innerText !== ""
     ) {
       document.querySelector(".info").innerText =
         boxtext[e[0]].innerText + " Won";
       gameover = true;
+      document
+        .querySelector(".imgbox")
+        .getElementsByTagName("img")[0].style.width = "200px";
     }
   });
 };
+
 // Game Logic
 let boxes = document.getElementsByClassName("box");
 Array.from(boxes).forEach((element) => {
@@ -48,4 +52,16 @@ Array.from(boxes).forEach((element) => {
       }
     }
   });
+});
+// add on click listener to reset button
+let reset = document.getElementById("reset");
+reset.addEventListener("click", (element) => {
+  document.getElementsByTagName("img")[0].style.width = "0";
+  let boxtexts = document.querySelectorAll(".boxtext");
+  Array.from(boxtexts).forEach((element) => {
+    element.innerText = "";
+  });
+  turn = "X";
+  gameover = false;
+  document.getElementsByClassName("info")[0].innerText = "Turn for " + turn;
 });
